@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Kartu RFID</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>@media print { .no-print{display:none;} }</style>
+</head>
+<body class="bg-light">
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="m-0">🔐 Admin Kartu RFID</h3>
+    <div id="authArea" class="no-print"></div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <form id="cardForm" class="row g-2 no-print">
+        <div class="col-md-4">
+          <input required id="uid" class="form-control" placeholder="UID (contoh: AA BB CC DD)">
+        </div>
+        <div class="col-md-4">
+          <input required id="owner" class="form-control" placeholder="Nama Pemilik">
+        </div>
+        <div class="col-md-2 form-check d-flex align-items-center ms-2">
+          <input class="form-check-input" type="checkbox" id="active" checked>
+          <label class="form-check-label ms-2" for="active">Aktif</label>
+        </div>
+        <div class="col-md-2 d-grid">
+          <button class="btn btn-primary" type="submit">Simpan/Update</button>
+        </div>
+      </form>
+
+      <div class="d-flex gap-2 mt-3 no-print">
+        <input id="search" class="form-control" style="max-width:260px" placeholder="Cari UID / Pemilik">
+        <button class="btn btn-success" onclick="window.print()">🖨️ Cetak</button>
+      </div>
+
+      <div class="table-responsive mt-3">
+        <table class="table table-striped table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th>#</th>
+              <th>UID</th>
+              <th>Pemilik</th>
+              <th>Aktif</th>
+              <th class="no-print">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+    
+    <a href="dashboard.html" class="btn-get-started">Get Started</a>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+  import { getDatabase, ref, onValue, update, remove } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+  import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+
+  // TODO: Ganti konfigurasi
+  const firebaseConfig = {
+      apiKey: "AIzaSyCK41p3Ufc-KFTMGhdzwSKbxDiWP2enjc0",
+      authDomain: "gerbang-61ad4.firebaseapp.com",
+      databaseURL: "https://gerbang-61ad4-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "gerbang-61ad4",
+      storageBucket: "gerbang-61ad4.firebasestorage.app",
+      messagingSenderId: "130881959289",
+      appId: "1:130881959289:web:a4c68dbef6067c90aaeba8",
+      measurementId: "G-311S91E2HM"
+    };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const auth = getAuth(app);
+
+  const tbody = document.getElementById('tbody');
+  const form = document.getElementById('cardForm');
+  const uidEl = document.getElementById('uid');
+  const ownerEl = document.getElementById('owner');
+  const activeEl = document.getElementById('active');
+  const searchEl = document.getElementById('search');
+  const authArea = document.getElementById('authArea');
+
+  function renderLogin() {
+    authArea.innerHTML = `
+      <form id="loginForm" class="d-flex gap-2">
+        <input required type="email" id="email" class="form-control" placeholder="Email admin">
+        <input required type="password" id="password" class="form-control" placeholder="Password">
+        <button class="btn btn-primary" type="submit">Login</button>
+      </form>`;
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      try { await signInWithEmailAndPassword(auth, email, password); }
+      catch (err) { alert('Login gagal: ' + err.message); }
+    });
+  }
+
+  function renderLogout(user) {
+    authArea.innerHTML = `
+      <div class="d-flex align-items-center gap-2">
+        <span>Masuk sebagai <strong>${user.email}</strong></span>
+        <button class="btn btn-outline-danger btn-sm" id="logoutBtn">Logout</button>
+      </div>`;
+    document.getElementById('logoutBtn').onclick = () => signOut(auth);
+  }
+
+  function normUID(s){ return s.trim().toUpperCase().replace(/\s+/g,' '); }
+
+  function rowMatchesFilter(row, q){
+    if (!q) return true; q = q.toLowerCase();
+    return row.uid.toLowerCase().includes(q) || (row.owner||'').toLowerCase().includes(q);
+  }
+
+  function drawTable(cards){
+    const q = (searchEl.value||'').trim();
+    tbody.innerHTML = '';
+    let i = 0;
+    Object.keys(cards).sort().forEach(uid => {
+      const row = { uid, owner: cards[uid].owner||'', active: !!cards[uid].active };
+      if (!rowMatchesFilter(row, q)) return;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${++i}</td>
+        <td>${uid}</td>
+        <td>${row.owner}</td>
+        <td>${row.active ? 'Ya' : 'Tidak'}</td>
+        <td class="no-print">
+          <button class="btn btn-sm btn-outline-primary me-1" data-act="edit" data-uid="${uid}">Edit</button>
+          <button class="btn btn-sm btn-outline-danger" data-act="del" data-uid="${uid}">Hapus</button>
+        </td>`;
+      tbody.appendChild(tr);
+    });
+  }
+
+  let cardsCache = {};
+  onValue(ref(db, 'cards'), (snap)=>{
+    cardsCache = snap.val() || {};
+    drawTable(cardsCache);
+  });
+
+  tbody.addEventListener('click', (e)=>{
+    const btn = e.target.closest('button'); if(!btn) return;
+    const act = btn.dataset.act; const uid = btn.dataset.uid;
+    if (act === 'edit') {
+      const c = cardsCache[uid];
+      uidEl.value = uid; ownerEl.value = (c && c.owner) || ''; activeEl.checked = !!(c && c.active);
+      uidEl.focus();
+    } else if (act === 'del') {
+      if (confirm('Hapus kartu '+uid+'?')) remove(ref(db, 'cards/'+uid));
+    }
+  });
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const uid = normUID(uidEl.value);
+    const owner = ownerEl.value.trim();
+    const active = activeEl.checked;
+    if (!uid || !owner) return alert('UID dan Pemilik wajib diisi');
+    try {
+      await update(ref(db, 'cards/'+uid), { owner, active });
+      uidEl.value = ''; ownerEl.value = ''; activeEl.checked = true;
+    } catch(err){ alert('Gagal simpan: '+err.message); }
+  });
+
+  searchEl.addEventListener('input', ()=> drawTable(cardsCache));
+
+  onAuthStateChanged(auth, user => { user ? renderLogout(user) : renderLogin(); });
+</script>
+</body>
+</html>
