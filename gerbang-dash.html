@@ -119,12 +119,13 @@
                 <thead class="table-dark">
                   <tr>
                     <th>#</th>
-                    <th>Waktu</th>
+                    <!-- <th>Waktu</th> -->
                     <th>UID</th>
                     <th>Pemilik</th>
                     <th>Gate</th>
                     <th>Status</th>
                     <th>Device IP</th>
+                    <th>Waktu</th>
                   </tr>
                 </thead>
                 <tbody id="tbody"></tbody>
@@ -295,14 +296,16 @@
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td>${++rowCount}</td>
-        <td>${fmtTime(row.ts)}</td>
+        
         <td>${row.uid || ""}</td>
         <td>${row.owner || ""}</td>
         <td>${row.gateId || ""}</td>
         <td>${row.status || ""}</td>
         <td>${row.deviceIp || ""}</td>
+        <td>${row.waktu || ""}</td>
+        
       `;
-      tbody.prepend(tr); // terbaru di atas
+      tbody.prepend(tr); // terbaru di atas// <td>${fmtTime(row.ts)}</td>
     }
   
     async function resolveOwner(uid) {
