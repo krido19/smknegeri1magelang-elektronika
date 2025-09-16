@@ -39,7 +39,7 @@
   ======================================================== -->
 </head>
 
-<body class="service-details-page">
+<body class="index-page">
 
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
@@ -47,7 +47,7 @@
       <a href="index.html" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">Elektronika</h1>
+        <h1 class="sitename">ELEKTRONIKA</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -59,85 +59,159 @@
           <li><a href="pkl.html#pkl">Praktik Kerja Lapangan</a></li>
           <li><a href="team.html#team">Team Elektronika</a></li>
           <li><a href="pinjam.html#alat">Peminjaman Alat</a></li>
-
+          <!-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Dropdown 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown 2</a></li>
+              <li><a href="#">Dropdown 3</a></li>
+              <li><a href="#">Dropdown 4</a></li>
+            </ul>
+          </li> -->
+          <!-- <li><a href="#contact">Contact</a></li> -->
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
+
+      <!-- <a class="cta-btn" href="index.html#about">Get Started</a> -->
 
     </div>
   </header>
 
   <main class="main">
 
-    <!-- Page Title -->
-    <div class="page-title dark-background" data-aos="fade"
-      style="background-image: url(assets/img/page-title-bg.webp);">
-      <div class="container position-relative">
-        <h1>Kabar Elektronika</h1>
-        <p>Dari Rangkaian Sederhana Menuju Teknologi Masa Depan..</p>
-        <nav class="breadcrumbs">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Service Details</li>
-          </ol>
-        </nav>
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+
+      <div class="container d-flex flex-column align-items-center">
+        <h2 data-aos="fade-up" data-aos-delay="100">PLAN. LAUNCH. GROW.</h2>
+        <p data-aos="fade-up" data-aos-delay="200">Dari Rangkaian Sederhana Menuju Teknologi Masa Depan.</p>
+        <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+          <a href="#about" class="btn-get-started">Get Started</a>
+          <a href="https://www.youtube.com/watch?v=bEcTSQrfqNI&ab_channel=SmartHomeElka"
+            class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch
+              Video</span></a>
+        </div>
       </div>
-    </div><!-- End Page Title -->
+      </section>
+    <!-- Services Section -->
+    <section id="materi" class="services section">
 
-    <!-- Service Details Section -->
-    <section id="service-details" class="service-details section">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Materi</h2>
+        <p>ELEKTRONIKA<br></p>
+      </div><!-- End Section Title -->
+      
 
-      <div class="container">
-
-        <div class="row gy-4">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
 
 
+        <div class="row gy-5">
 
-          <h4>Selma dan Informa Electronics</h4>
-          <p>Selma dan Informa Electronics bekerja sama untuk menawarkan solusi terpadu dalam satu lokasi</p>
+          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+            <div class="service-item">
+              <div class="img">
+                <img src="assets/img/services-1.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <i class="bi bi-activity"></i>
+                </div>
+                <a href="pdf.html#pdf" class="stretched-link">
+                  <h3>Besaran Listrik Dasar</h3>
+                </a>
+                <ul>
+                  <li><span>Tegangan (V) → beda potensial listrik, satuan Volt (V).
+                    </span></li>
+                  <li><span>Arus (I) → aliran muatan listrik, satuan Ampere (A).
+                    </span></li>
+                  <li><span>Hambatan (R) → tahanan terhadap aliran listrik, satuan Ohm (Ω)..
+                    </span></li>
+                  <li><span> Daya (P) → energi listrik per waktu, satuan Watt (W).
+                    </span></li>
+
+                </ul>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+            <div class="service-item">
+              <div class="img">
+                <img src="assets/img/services-2.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <i class="bi bi-broadcast"></i>
+                </div>
+                <a href="pasif.html#pasif" class="stretched-link">
+                  <h3>Komponen Pasif</h3>
+                </a>
+                <ul>
+                  <li><span>
+
+                      Resistor: membatasi arus listrik.
+                    </span>
+                  <li><span>Kapasitor: menyimpan energi dalam bentuk medan listrik.
+                    </span>
+                  <li><span>Induktor (Coil): menyimpan energi dalam bentuk medan magnet.
+                    </span></li>
+
+                </ul>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+            <div class="service-item">
+              <div class="img">
+                <img src="assets/img/services-3.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <i class="bi bi-easel"></i>
+                </div>
+                <a href="pdf.html#pdf" class="stretched-link">
+                  <h3>Komponen Aktif</h3>
+                </a>
+                <ul>
+                  <li><span>
+
+                      Dioda: mengalirkan arus satu arah.
+                    </span>
+
+                  <li><span>Transistor: sebagai saklar atau penguat sinyal.
+
+                  <li>IC (Integrated Circuit): rangkaian kompleks dalam satu chip.
+                    </span></li>
+
+                </ul>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+            
         </div>
 
-        <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
-          <img src="assets/img/services.jpg" alt="" class="img-fluid services-img">
-          <h3>Selma dan Informa Electronics terus melakukan ekspansi bisnis dengan membuka gerai baru, yang terakhir di
-            Artos Mall, Magelang</h3>
-          <p class="MsoNormal" style="text-align: justify; text-indent: 0.5in;">
-            Selma dan Informa Electronics terus melakukan ekspansi bisnis dengan membuka gerai baru, yang terakhir di
-            Artos Mall, Magelang, pada 24 Juli 2025, untuk menyediakan solusi lengkap kebutuhan rumah tangga dan
-            elektronik dalam satu tempat melalui konsep one stop shopping. Ekspansi ini bertujuan menjangkau pasar yang
-            lebih luas, meningkatkan daya saing, serta mengoptimalkan strategi omnichannel dan layanan pembiayaan untuk
-            memenuhi kebutuhan konsumen modern.
-          </p>
-          <p class="MsoNormal" style="text-align: justify; text-indent: 0.5in;">
-
-            Dukungan terhadap Ekspansi Bisnis
-            Konsep Kolaborasi:
-            Selma dan Informa Electronics bekerja sama untuk menawarkan solusi terpadu dalam satu lokasi, yang
-            memudahkan pelanggan dalam menemukan perabot rumah tangga dan peralatan elektronik.
-            Strategi Omnichannel
-            : Perusahaan mengintegrasikan pengalaman belanja secara daring melalui platform ruparupa.com dan menyediakan
-            berbagai opsi pembayaran non-tunai seperti cicilan dan leasing untuk menjangkau segmen pasar yang lebih
-            luas.
-          </p>
-          <p class="MsoNormal" style="text-align: justify; text-indent: 0.5in;">
-            Pengembangan Produk Merek Sendiri:
-            Selain merek ternama, Kawan Lama Group juga menghadirkan merek internal seperti KELS yang menyediakan produk
-            elektronik dengan desain modern, minimalis, dan multifungsi untuk melengkapi penawaran di toko-toko mereka,
-            termasuk Selma dan Informa Electronics.
-            Apresiasi bagi Konsumen:
-            Untuk mendukung ekspansi, berbagai promo seperti diskon "Banting Harga" hingga 70%, voucher belanja,
-            cashback, dan program cicilan 0% dihadirkan untuk menarik pelanggan dan memberikan apresiasi khusus di
-            setiap pembukaan gerai baru. 
-          </p>
-
-          
-        </div>
-
       </div>
 
-      </div>
+    </section><!-- /Services Section -->
 
-    </section><!-- /Service Details Section -->
+    
+   
+     
+
 
   </main>
 
@@ -147,13 +221,13 @@
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">Dewi</span>
+            <span class="sitename">Elektronika</span>
           </a>
           <div class="footer-contact pt-3">
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
+            <p>Jalan Cawang No. 2</p>
+            <p>Magelang, ID 56123</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+62 1234 12</span></p>
+            <p><strong>Email:</strong> <span>t.elektronika.smkn1mgl@gmail.com</span></p>
           </div>
           <div class="social-links d-flex mt-4">
             <a href=""><i class="bi bi-twitter-x"></i></a>
@@ -166,7 +240,7 @@
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="index.html#hero" >Halaman Depan</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html#hero">Halaman Depan</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="index.html#about">Tentang Elektronika</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="materi.html#materi">Materi Elektronika</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="product.html#product">Kegiatan & Hasil Karya Siswa</a></li>
@@ -209,11 +283,13 @@
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a
-          href=“https://themewagon.com>ThemeWagon</a>
+          href=“https://themewagon.com>ThemeWagon </a>
       </div>
       <div class="edit">
-        Edited by <a href="https://krido19.github.io/cv/">Krido</a> 
-    </div>
+        Edited by <a href="https://krido19.github.io/cv/">Krido</a> <a
+          href="https://krido19.github.io/smknegeri1magelang-elektronika/gerbang.html#gerbangadmin">.</a>
+      </div>
+
     </div>
 
   </footer>
